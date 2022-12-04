@@ -2,6 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const fs = require("fs")
 const app = express();
+const bodyParser = require("body-parser")
 app.use(bodyParser.json());
 app.set('trust proxy', true);
 require("dotenv").config()
