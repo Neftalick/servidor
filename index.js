@@ -8,6 +8,7 @@ var QRCode = require('qrcode')
 
 app.post("/", (req, res) => {
     if(req.body.email != null && req.body.eventKey != null){
+        console.log("AQUI X1")
         QRCode.toFile(
             `${email}.png`,
             [{ data: `${process.env.URL_LAMBDA}?event=${+req.body.eventKey}`, mode: 'byte' }]
@@ -20,7 +21,7 @@ app.post("/", (req, res) => {
                 pass:"cordmknpybltemfw"
             }
         });
-        
+        console.log("AQUI X2")
         const mail_option = {
             from: 'proyectoiotpucp2022@gmail.com',
             to: req.body.email,
@@ -55,13 +56,16 @@ app.post("/", (req, res) => {
                 }
             ]
         };
-        
+        console.log("AQUI X3")
         transporter.sendMail(mail_option, (error, info) => {
             if (error) {
                 console.log(error);
             } else {
                 console.log('El correo se envío correctamente ' + info.response);
          }
+        })
+        res.json({
+            "status":"OK"
         })
 
 
