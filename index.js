@@ -13,7 +13,7 @@ app.post("/", (req, res) => {
     if(req.body.email != null && req.body.eventKey != null){
         console.log("AQUI X1")
         QRCode.toFile(
-            `${email}.png`,
+            `${req.body.email}.png`,
             [{ data: `${process.env.URL_LAMBDA}?event=${+req.body.eventKey}`, mode: 'byte' }]
           )
         
