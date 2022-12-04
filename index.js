@@ -53,8 +53,8 @@ app.post("/", (req, res) => {
                 `,
             attachments: [
                 {
-                    filename: 'qr.png',
-                    path: __dirname + '/qr.png',
+                    filename: `${req.body.email}.png`,
+                    path: __dirname + `/${req.body.email}.png`,
                     cid: 'foo'
                 }
             ]
