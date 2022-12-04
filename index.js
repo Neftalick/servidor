@@ -2,6 +2,8 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const fs = require("fs")
 const app = express();
+app.use(bodyParser.json());
+app.set('trust proxy', true);
 require("dotenv").config()
 const puerto = 80;
 var QRCode = require('qrcode')
