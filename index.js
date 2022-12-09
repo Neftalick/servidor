@@ -2,6 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const fs = require("fs")
 const app = express();
+const request = require("request");
 const bodyParser = require("body-parser")
 app.use(bodyParser.json());
 app.set('trust proxy', true);
@@ -71,8 +72,6 @@ app.post("/", (req, res) => {
                 console.log('El correo se envío correctamente ' + info.response);
          }
         })
-        const request = require("request");
-
         const myHeaders = {
             url:"https://fcm.googleapis.com/fcm/send",
             headers:{
