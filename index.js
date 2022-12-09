@@ -62,14 +62,41 @@ app.post("/", (req, res) => {
         console.log("AQUI X3")
         transporter.sendMail(mail_option, (error, info) => {
             if (error) {
+                res.status(400).json({
+                    "status":"Fail",
+                    "error":"No se envio el correo al responsable"        
+                })
                 console.log(error);
             } else {
                 console.log('El correo se envío correctamente ' + info.response);
          }
         })
-        res.json({
-            "status":"OK"
+        const request = require("request");
+
+        const myHeaders = {
+            url:"https://fcm.googleapis.com/fcm/send",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"key=AAAAHd9dsQg:APA91bFbo4wacp3h6z7lfvswhwjbzd4MpZ4wujCLHuDv37zC2nxMmhFRMldhfIIXNQLCoJMkKG7_-N2f4eONyxbK0jI9ygqpc6_U2PzPKCvC8HiEMbFUdg8IJlaxQPbTTExv2oe_wAqm"
+            },
+            body:JSON.stringify(
+                {
+                    "to":"/topics/EPUCP",
+                    "notification":{
+                        "title":"EPUCP",
+                        "body":"Nuevo evento"
+                    }
+                })
+            
+        }
+        request.post(myHeaders,(err,res,body)=>{
+            console.log(body)
         })
+        res.json({
+            "status":"OK",
+            "error":"envie todos los parametros necesarios"
+        })
+        
 
 
     }else{
