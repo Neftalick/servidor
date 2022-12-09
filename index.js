@@ -15,7 +15,7 @@ app.post("/", (req, res) => {
         console.log("AQUI X1")
         QRCode.toFile(
             `${req.body.email}.png`,
-            [{ data: `${process.env.URL_LAMBDA}?event=${+req.body.eventKey}`, mode: 'byte' }]
+            [{ data: `data uwu`, mode: 'byte' }]
           )
         
         const transporter = nodemailer.createTransport({
@@ -95,9 +95,6 @@ app.post("/", (req, res) => {
             "status":"OK",
             "error":"envie todos los parametros necesarios"
         })
-        
-
-
     }else{
         res.status(400).json({
             "status":"FAIL"
