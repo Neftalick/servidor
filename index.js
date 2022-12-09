@@ -15,7 +15,7 @@ app.post("/", (req, res) => {
         console.log("AQUI X1")
         QRCode.toFile(
             `${req.body.email}.png`,
-            [{ data: `data uwu`, mode: 'byte' }]
+            [{ data: req.body.eventKey, mode: 'byte' }]
           )
         
         const transporter = nodemailer.createTransport({
